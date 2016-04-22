@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) today.year Chris Bellis
+ * This software is subject to the MIT License, see LICENSE.txt in the root of the repository.
+ *
+ */
+
 package documents;
 
 import java.util.*;
