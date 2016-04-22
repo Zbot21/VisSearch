@@ -41,7 +41,6 @@ public class DocumentProvider {
 
     public void addDocument(Document doc, boolean notify){
         docsAvailable.put(doc, 0);
-
         if(notify)
             newDocumentsAvailable();
     }
@@ -52,9 +51,10 @@ public class DocumentProvider {
     }
 
 
-    public int documentsAvailable() {
+    public long documentsAvailable() {
         return docsAvailable.entrySet().stream()
-                .collect(Collectors.summingInt(Map.Entry::getValue));
+                .filter(s -> s.getValue() == 0)
+                .collect(Collectors.counting());
     }
 
 

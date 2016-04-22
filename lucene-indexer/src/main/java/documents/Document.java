@@ -5,6 +5,11 @@
 
 package documents;
 
+import com.google.common.hash.HashFunction;
+import com.google.common.hash.Hasher;
+import com.google.common.hash.Hashing;
+
+import java.nio.charset.Charset;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -39,6 +44,8 @@ public abstract class Document {
     public abstract List<String> hiddenFields();
 
     public int hashCode(){
-        return Objects.hash(getName());
+        Hasher hf = Hashing.md5().newHasher();
+        metadata.forEach((k,v) -> hf.putString(v, Charset.defaultCharset()));
+        return hf.hash().asInt();
     }
 }
